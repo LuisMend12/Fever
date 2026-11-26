@@ -107,7 +107,8 @@ web/
 
 1. Pick an open [issue](https://github.com/LuisMend12/Fever/issues), or open one to discuss a new idea.
 2. Create a branch from `main`.
-3. Open a pull request that references the issue (for example `Closes #4`).
+3. Add a line to [CHANGELOG.md](CHANGELOG.md) under **Unreleased** describing what changed, linked to the issue.
+4. Open a pull request that references the issue (for example `Closes #4`).
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `chore:` ...).
 
