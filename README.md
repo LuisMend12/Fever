@@ -56,11 +56,52 @@ Decided in [#1](https://github.com/LuisMend12/Fever/issues/1). Still open: where
 
 ## Getting started
 
-There's no code to run yet. Setup instructions will be added here with the project scaffold ([#2](https://github.com/LuisMend12/Fever/issues/2)). Expect to need:
+Right now Fever plays one synthesized kick drum: press **Space** or click the **Kick** pad.
 
-- [Rust](https://www.rust-lang.org/tools/install) with the `wasm32-unknown-unknown` target
-- [Node.js](https://nodejs.org/) for the UI tooling
-- A recent Chromium-based browser or Firefox
+### Prerequisites
+
+- [Rust](https://www.rust-lang.org/tools/install) (stable), plus the WebAssembly target:
+  ```sh
+  rustup target add wasm32-unknown-unknown
+  ```
+  On Windows without Visual Studio Build Tools, install the GNU host toolchain
+  (`rustup-init --default-host x86_64-pc-windows-gnu`) so `cargo test` can link.
+- [Node.js](https://nodejs.org/) 20 or newer
+- A modern browser (tested in Chrome)
+
+### Run it
+
+```sh
+npm install
+npm run dev      # builds the Rust engine, then serves the app at http://localhost:1234
+```
+
+The first Space press or pad click starts audio. Browsers don't allow sound before a user gesture.
+
+### Other commands
+
+| Command | What it does |
+|---|---|
+| `npm run build` | Production build into `dist/` |
+| `npm test` | Rust unit tests for the engine |
+| `npm run typecheck` | TypeScript type check |
+| `npm run build:engine` | Rebuild only the `.wasm` engine |
+
+`npm run dev` builds the engine once at startup. After changing Rust code, run `npm run build:engine` in another terminal, then reload the page.
+
+### Project layout
+
+```
+engine/            Rust audio engine (compiled to WebAssembly)
+  src/lib.rs       exported functions: init, trigger_kick, render, output_ptr, block_size
+  src/kick.rs      the kick drum synth + its tests
+web/
+  index.html
+  src/audio.ts     creates the AudioContext, compiles the .wasm, loads the worklet
+  src/worklet/     AudioWorkletProcessor that runs the engine on the audio thread
+  src/messages.ts  message types shared by the UI and the worklet
+  src/App.tsx      Solid UI: Space key + Kick pad
+```
 
 ## Contributing
 

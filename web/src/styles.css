@@ -1,0 +1,91 @@
+:root {
+  --bg: #14110f;
+  --panel: #221d19;
+  --text: #f3ece6;
+  --muted: #a8998c;
+  --accent: #ff5a36;
+  --accent-hit: #ffb199;
+  --error: #ff8a8a;
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.status {
+  margin: 4px 0 32px;
+  color: var(--muted);
+}
+
+.status[data-status="ready"] {
+  color: var(--text);
+}
+
+.pads {
+  display: flex;
+  gap: 16px;
+}
+
+.pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 140px;
+  height: 140px;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background 80ms ease-out;
+}
+
+.pad.hit {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.pad:focus-visible {
+  outline: 3px solid var(--accent-hit);
+  outline-offset: 3px;
+}
+
+.key {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.error {
+  margin-top: 24px;
+  color: var(--error);
+}

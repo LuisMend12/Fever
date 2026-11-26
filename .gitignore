@@ -1,11 +1,12 @@
 # Rust
-/target/
+target/
 **/*.rs.bk
 
 # Node / web tooling
 node_modules/
 dist/
 pkg/
+.parcel-cache/
 
 # Editors and OS
 .vscode/

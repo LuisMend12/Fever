@@ -1,0 +1,27 @@
+{
+  "name": "fever",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "An open-source browser DAW with instruments and effects written from scratch",
+  "scripts": {
+    "build:engine": "cargo build --release --target wasm32-unknown-unknown --manifest-path engine/Cargo.toml",
+    "dev": "npm run build:engine && parcel web/index.html",
+    "build": "npm run build:engine && parcel build web/index.html",
+    "test": "cargo test --manifest-path engine/Cargo.toml",
+    "typecheck": "tsc --noEmit"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
+  },
+  "dependencies": {
+    "solid-js": "^1.9.20"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@parcel/transformer-worklet": "^2.16.4",
+    "babel-preset-solid": "^1.9.19",
+    "parcel": "^2.16.4",
+    "typescript": "^7.0.2"
+  }
+}
