@@ -48,12 +48,11 @@ Features are built in this order, since each step depends on the ones before it:
 - **Audio engine:** Rust compiled to WebAssembly, running inside a Web Audio `AudioWorklet`. The browser asks it for a small block of audio (128 samples by default) every few milliseconds, so it has to be fast and predictable.
 - **UI:** TypeScript with [Solid](https://www.solidjs.com/), running on the main thread. It sends commands such as "play this note" to the engine.
 
-Still to be decided (see [#1](https://github.com/LuisMend12/Fever/issues/1)):
+- **Bundler:** [Parcel](https://parceljs.org/), which can bundle the AudioWorklet directly
+- **WASM build:** plain `cargo build --target wasm32-unknown-unknown` with hand-written `extern "C"` exports (no `wasm-bindgen`)
+- **Backend:** none for now. One will be added if a feature needs it.
 
-- Bundler / dev server
-- How the Rust code is built to WASM (`wasm-pack` or plain `cargo`)
-- Whether Fever needs a backend server, and what for
-- Where the sequencer clock lives and who owns project state ([#5](https://github.com/LuisMend12/Fever/issues/5))
+Decided in [#1](https://github.com/LuisMend12/Fever/issues/1). Still open: where the sequencer clock lives and who owns project state ([#5](https://github.com/LuisMend12/Fever/issues/5)).
 
 ## Getting started
 
